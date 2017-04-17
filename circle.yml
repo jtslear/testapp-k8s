@@ -1,0 +1,22 @@
+dependencies:
+  pre:
+    - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+    - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+    - echo "Y" | sudo /opt/google-cloud-sdk/bin/gcloud components install kubectl
+    - /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+
+test:
+  override:
+    - ./test.sh
+
+deployment:
+  staging:
+    branch: staging
+    commands:
+      - /opt/google-cloud-sdk/bin/gcloud config set project waffleio-dev
+      - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials dev --zone us-east1-b
+      - ./deploy.sh
+  production:
+    branch: master
+    commands:
+      - ./deploy.sh
