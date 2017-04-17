@@ -6,11 +6,18 @@ echo ${changed}
 
 containsElement () {
   local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+  for e in "${@:2}"
+  do
+    [[ "$e" == "$1" ]] && return 0
+  done
   return 1
 }
 
-if [[ $(containsElement "app-config.yml" "${changed}") ]]
+containsElement "app-config.yml" "${changed[@]}"
+declare -r is_changed=$?
+echo ${is_changed}
+
+if [[ ${is_changed} -eq 1 ]]
 then
   echo "Gonna reconfigure the application"
 else
