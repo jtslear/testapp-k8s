@@ -1,18 +1,12 @@
 #!/bin/bash -x
 
-declare -r changed=$(git diff --name-only HEAD~1)
+declare -a changed=($(git diff --name-only HEAD~1))
 
 echo ${changed}
 
 containsElement () {
   local e
-  for e in "${@:2}"
-  do
-    if [[ ${e} == ${1} ]]
-    then
-      return 0
-    fi
-  done
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
   return 1
 }
 
