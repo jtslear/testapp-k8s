@@ -8,6 +8,9 @@ dependencies:
 test:
   override:
     - ./test.sh
+  post:
+    - docker build -t jtslear/testapp-k8s:$CIRCLE_SHA1
+    - docker push jtslear/testapp-k8s:$CIRCLE_SHA1
 
 deployment:
   staging:
@@ -15,8 +18,12 @@ deployment:
     commands:
       - /opt/google-cloud-sdk/bin/gcloud config set project waffleio-dev
       - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials dev --zone us-east1-b
+      - kubectl config use-context mock-staging
       - ./deploy.sh
   production:
     branch: master
     commands:
+      - /opt/google-cloud-sdk/bin/gcloud config set project waffleio-production
+      - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials production --zone us-east1-b
+      - kubectl config use-context mock-production
       - ./deploy.sh
