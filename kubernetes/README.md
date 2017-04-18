@@ -45,6 +45,8 @@
   are no changes to anything in `./kubernetes/*`
 * A deploy will fail if the application configuration has never been deployed
   into the cluster
+* Highly error prone, as it only looks one commit back.  If commits aren't
+  squashed, or if there's a change completed things may not work correctly...
 
 #### ./kubernetes/*
 * I've chosen to create an image name with `release`
