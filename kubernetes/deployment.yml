@@ -14,5 +14,5 @@ spec:
       containers:
       - name: testapp
         image: quay.io/waffleio/testapp-k8s:release
-        imagePullSecrets:
-          - name: waffleio-minikube-pull-secret
+      imagePullSecrets:
+        - name: waffleio-minikube-pull-secret
