@@ -27,7 +27,7 @@ else
   echo "No application configuration changes detected"
   echo "Proceeding to complete a deploy..."
   kubectl set -n ${environment} image deployments/${deployment} ${container_name}=${image}:${CIRCLE_SHA1}
-  kubectl rolloutstatus deployments${deployment} -n ${environment}
+  kubectl rollout status deployments${deployment} -n ${environment}
 fi
 
 
