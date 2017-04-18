@@ -23,12 +23,12 @@ deployment:
   staging:
     branch: staging
     commands:
-      - /opt/google-cloud-sdk/bin/gcloud config set project asdf
+      - /opt/google-cloud-sdk/bin/gcloud config set project asdf-165014
       - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-west1-a
       - ./deploy.sh staging
   production:
     branch: master
     commands:
-      - /opt/google-cloud-sdk/bin/gcloud config set project asdf
+      - /opt/google-cloud-sdk/bin/gcloud config set project asdf-165014
       - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-west1-a
       - ./deploy.sh production
