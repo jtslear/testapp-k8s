@@ -10,7 +10,9 @@ test:
     - ./test.sh
   post:
     - docker build -t jtslear/testapp-k8s:$CIRCLE_SHA1
+    - docker tag jtslear/testapp-k8s:$CIRCLE_SHA1 jtslear/testapp-k8s:release
     - docker push jtslear/testapp-k8s:$CIRCLE_SHA1
+    - docker push jtslear/testapp-k8s:release
 
 deployment:
   staging:
