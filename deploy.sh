@@ -21,7 +21,7 @@ echo ${config_is_changed}
 if [[ ${config_is_changed} -eq 0 ]]
 then
   echo "Gonna reconfigure the application"
-  kubectl create -n ${environment} -f ./kubernetes/
+  kubectl apply -n ${environment} -f ./kubernetes/
 else
   echo "No application configuration changes detected"
   echo "Proceeding to complete a deploy..."
