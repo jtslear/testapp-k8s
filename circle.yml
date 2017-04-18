@@ -8,15 +8,16 @@ dependencies:
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
     - echo "Y" | sudo /opt/google-cloud-sdk/bin/gcloud components install kubectl
     - /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS $EXTERNAL_REGISTRY_ENDPOINT
 
 test:
   override:
     - ./test.sh
   post:
-    - docker build -t jtslear/testapp-k8s:$CIRCLE_SHA1 .
-    - docker tag jtslear/testapp-k8s:$CIRCLE_SHA1 jtslear/testapp-k8s:release
-    - docker push jtslear/testapp-k8s:$CIRCLE_SHA1
-    - docker push jtslear/testapp-k8s:release
+    - docker build -t quay.io/waffleio/testapp-k8s:$CIRCLE_SHA1 .
+    - docker tag quay.io/waffleio/testapp-k8s:$CIRCLE_SHA1 quay.io/waffleio/testapp-k8s:release
+    - docker push quay.io/waffleio/testapp-k8s:$CIRCLE_SHA1
+    - docker push quay.io/waffleio/testapp-k8s:release
 
 deployment:
   staging:

@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-declare -r image=jtslear/testapp-k8s
+declare -r image=quay.io/waffleio/testapp-k8s
 declare -r deployment=testapp
 
 declare -a files_changed=($(git diff --name-only HEAD~1))
