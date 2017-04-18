@@ -8,7 +8,7 @@ dependencies:
     - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
     - echo "Y" | sudo /opt/google-cloud-sdk/bin/gcloud components install kubectl
     - /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
-    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS $EXTERNAL_REGISTRY_ENDPOINT
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD $EXTERNAL_REGISTRY_ENDPOINT
 
 test:
   override:
