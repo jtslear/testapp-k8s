@@ -13,4 +13,4 @@ spec:
     spec:
       containers:
       - name: testapp
-        image: jtslear/testapp-k8s
+        image: jtslear/testapp-k8s:release
