@@ -52,6 +52,7 @@
 * ANY change to the `./kubernetes/*` will result in an apply action on the
   directory, which means we won't deploy the has, but rather, we'd deploy the
   `release` tag of the container instead
+* This does not initiate a rollback during a failed deploy
 
 #### ./kubernetes/*
 * I've chosen to create an image name with `release`
