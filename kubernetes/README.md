@@ -37,6 +37,7 @@
   `./kubernets/*` files
   * `image` = the name of the docker container that we'll update on each deploy
   * `deployment` = name of the deployment configuration
+  * `environment` = passed in via circleci's yml configuration
 
 ### Caveats
 #### deploy.sh
