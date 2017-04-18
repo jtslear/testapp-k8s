@@ -47,6 +47,11 @@
   into the cluster
 * Highly error prone, as it only looks one commit back.  If commits aren't
   squashed, or if there's a change completed things may not work correctly...
+* Deploy's would always happen.... even if the change is unrelated to code, a
+  docker container would always be built, even on empty commits
+* ANY change to the `./kubernetes/*` will result in an apply action on the
+  directory, which means we won't deploy the has, but rather, we'd deploy the
+  `release` tag of the container instead
 
 #### ./kubernetes/*
 * I've chosen to create an image name with `release`
