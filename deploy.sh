@@ -13,7 +13,7 @@ elementIn () {
   return 1
 }
 
-elementIn "app-config.yml" "${files_changed[@]}"
+elementIn "kubernetes/" "${files_changed[@]}"
 declare -r config_is_changed=$?
 echo ${config_is_changed}
 
