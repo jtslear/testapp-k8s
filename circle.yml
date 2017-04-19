@@ -24,4 +24,4 @@ deployment:
       - docker push quay.io/waffleio/testapp-k8s:release
       - /opt/google-cloud-sdk/bin/gcloud config set project asdf-165014
       - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-west1-a
-      - ./deploy production
+      - ./deploy.sh production
