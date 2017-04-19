@@ -17,13 +17,6 @@ test:
     - docker push quay.io/waffleio/testapp-k8s:$CIRCLE_SHA1
 
 deployment:
-  staging:
-    branch: staging
-    commands:
-      - /opt/google-cloud-sdk/bin/gcloud config set project asdf-165014
-      - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-west1-a
-      - kubectl set --namespace staging image deployments/testapp testapp=quay.io/waffleio/testapp-k8s:${CIRCLE_SHA1}
-      - kubectl rollout status deployments/testapp --namespace staging
   production:
     branch: master
     commands:
@@ -31,5 +24,4 @@ deployment:
       - docker push quay.io/waffleio/testapp-k8s:release
       - /opt/google-cloud-sdk/bin/gcloud config set project asdf-165014
       - /opt/google-cloud-sdk/bin/gcloud container clusters get-credentials cluster-1 --zone us-west1-a
-      - kubectl set --namespace production image deployments/testapp testapp=quay.io/waffleio/testapp-k8s:${CIRCLE_SHA1}
-      - kubectl rollout status deployments/testapp --namespace production
+      - ./deploy production
